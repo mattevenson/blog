@@ -4,12 +4,6 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hi, I'm Matt! 
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+In the past, I've written code at [Retool](https://retool.com/), [Robinhood](https://robinhood.com/us/en/), [WhatsApp](https://www.whatsapp.com/), and [Google](https://www.google.com/). 
