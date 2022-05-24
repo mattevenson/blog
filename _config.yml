@@ -20,7 +20,7 @@ tagline: Matt Evenson's Blog
 description: 
 
 # The full URL to your site. Note: site.github.url will be used by default.
-url:
+url: evenson.io
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -29,7 +29,7 @@ url:
 baseurl: ""
 
 # global author information
-author: matt-evenson
+author: mattevenson
 
 # URL to a site-wide logo (e.g., /assets/your-company-logo.png)
 logo: /assets/images/light_bauhaus_logo.png
