@@ -33,7 +33,7 @@ tap-thegraph --config tap.json | target-sqlite --config target.json
 ```
 
 
-For more power, you can use [Meltano](https://docs.meltano.com/getting-started) to build robust data pipelines on top of Singer taps and targets.
+For more power, you can use [Meltano](https://docs.meltano.com/getting-started) to build robust data pipelines on top of Singer taps and targets with orchestration, dbt transforms, and more.
 
 ### How it works
 
