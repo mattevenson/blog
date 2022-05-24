@@ -19,7 +19,7 @@ For example, here's how to export all markets on Compound v2 to a SQLite databas
 npm install -g graphql-api-to-json-schema
 pipx install git+https://github.com/superkeyio/tap-thegraph.git
 
-# 2. Install a Singer target for loading the data to a destination (for example, CSV).
+# 2. Install a Singer target for loading the data to a destination (for example, SQLite).
 pipx install target-sqlite
 
 # 3. Configure which subgraphs and entities to extract (for example, all markets on Compound V2).
@@ -39,7 +39,7 @@ For more power, you can use [Meltano](https://docs.meltano.com/getting-started) 
 
 The tap treats each entity within a subgraph as its own table (or stream, in Singer terms). 
 
-In order to figure out the schema for an entity, the tap makes an introspection query to the GraphQL API and then converts the GraphQL schema to JSON schema. Unfortunately, the only library I could find to do this conversion was in Javascript, and the Singer tap SDK was in Python, so [I hacked together a CLI](https://github.com/superkeyio/graphql-api-to-json-schema) using oclif and published it as an npm package so I could call it with `subprocess`.
+In order to figure out the schema for an entity, the tap makes an introspection query to the GraphQL API and then converts the GraphQL schema to JSON schema. Unfortunately, the only library I could find to do this conversion was in Javascript, and the Singer tap SDK was in Python, so [I hacked together a CLI](https://github.com/superkeyio/graphql-api-to-json-schema) using [`oclif`](https://oclif.io/) and published it as an npm package so I could call it with `subprocess`.
 
 In subgraphs, it is possible for entities to have one-to-many, many-to-one, or many-to-many relationships with other entities. To simplify things and eliminate the possiblity of cycles, we normalize by replacing all associations with the ID of the associated entity. 
 
