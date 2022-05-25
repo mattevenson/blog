@@ -34,13 +34,13 @@ author: mattevenson
 logo: /assets/images/light_bauhaus_logo.png
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: G-VMF9BT5DJ7
 
 permalink: /:year/:month/:day/:title/
 
 # Includes an icon in the footer for each username you enter
 footer-links:
-  email: mevenson@usc.edu
+  email: matt@evenson.io
   github: mattevenson
   linkedin: matt-evenson
 

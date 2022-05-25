@@ -3,9 +3,9 @@ layout: post
 title: "Building blockchain data pipelines with The Graph & Singer"
 ---
 
-[The Graph](https://thegraph.com/en/) makes lots of structured blockchain data available via GraphQL APIs called subgraphs. Almost every major DeFi protocol has a corresponding subgraph. For example, you can query [redeem events on Compound v2](https://thegraph.com/hosted-service/subgraph/graphprotocol/compound-v2?query=cDAI%20Transfers) or [Squeeth vaults](https://thegraph.com/explorersubgraph?id=Ao1QSKEQzsnNyyGKR1Faurjmkr6oNVTbgdxy6diAw9r&view=Playground).
+[The Graph](https://thegraph.com/en/) makes lots of structured blockchain data available via GraphQL APIs called [subgraphs](https://thegraph.com/hosted-service/). Almost every major DeFi protocol has a corresponding subgraph. For example, you can query [redeem events on Compound v2](https://thegraph.com/hosted-service/subgraph/graphprotocol/compound-v2?query=cDAI%20Transfers) or [Squeeth vaults](https://thegraph.com/hosted-service/subgraph/opynfinance/squeeth).
 
-Inspired by services like [Dune Analytics](https://dune.com/browse/dashboards) and [Flipside Crypto](https://app.flipsidecrypto.com/velocity?nav=Discover), I thought it would be fun to extract data from these subgraphs and load it into a SQL database for further analysis. It turns out that the folks at Decentraland had already done this for Decentraland's subgraph and [open-sourced their work](https://github.com/decentraland/tap-decentraland-thegraph). 
+I've been working with blockchain data a lot recently so naturally I've been playing around with The Graph. Inspired by services like [Dune Analytics](https://dune.com/browse/dashboards) and [Flipside Crypto](https://app.flipsidecrypto.com/velocity?nav=Discover), I thought it would be fun to extract data from these subgraphs and load it into a SQL database for further analysis. It turns out that the folks at Decentraland had already done this for Decentraland's subgraph and [open-sourced their work](https://github.com/decentraland/tap-decentraland-thegraph). 
 
 Under the covers, they used [Singer](https://www.singer.io/), which is an open source spec for writing data extraction scripts (taps) and data loading scripts (targets). Taps and targets communicate by passing JSON over Unix pipes, with [JSON Schema](https://json-schema.org/draft/2020-12/json-schema-core.html) for typing. The idea is that any tap is compatible with any target, so you don't need to roll your own script if one already exists for your source / destination!
 
@@ -39,7 +39,7 @@ For more power, you can use [Meltano](https://docs.meltano.com/getting-started) 
 
 The tap treats each entity within a subgraph as its own table (or stream, in Singer terms). 
 
-In order to figure out the schema for an entity, the tap makes an introspection query to the GraphQL API and then converts the GraphQL schema to JSON schema. Unfortunately, the only library I could find to do this conversion was in Javascript, and the Singer tap SDK was in Python, so [I hacked together a CLI](https://github.com/superkeyio/graphql-api-to-json-schema) using [`oclif`](https://oclif.io/) and published it as an npm package so I could call it with `subprocess`.
+In order to figure out the schema for an entity, the tap makes an [introspection query](https://graphql.org/learn/introspection/) to the GraphQL API and then converts the GraphQL schema to JSON schema. Unfortunately, the only library I could find to do this conversion was in Javascript, and the Singer tap SDK was in Python, so [I hacked together a CLI](https://github.com/superkeyio/graphql-api-to-json-schema) using [`oclif`](https://oclif.io/) and published it as an npm package so I could call it with `subprocess`.
 
 In subgraphs, it is possible for entities to have one-to-many, many-to-one, or many-to-many relationships with other entities. To simplify things and eliminate the possiblity of cycles, we normalize by replacing all associations with the ID of the associated entity. 
 
@@ -62,7 +62,7 @@ query($batchSize: Int!{ f', $latestOrderValue: {self.order_attribute_type}!' if 
 
 Fortunately, much of the plumbing involved in the Singer spec was taken care of by [Meltano's SDK for taps](https://sdk.meltano.com/en/latest/).
 
-And that's basically it. If you have questions or are also interested in blockchain data engineering, I'd love to chat!
+And that's basically it. If you have questions or are also interested in blockchain data engineering, drop me a line at [matt@evenson.io](mailto:matt@evenson.io)!
 
 
 
