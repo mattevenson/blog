@@ -10,3 +10,6 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-feed'
 end
+
+gem "kramdown", "~> 2.3"
+gem "rouge", "~> 3.26"
