@@ -43,6 +43,7 @@ footer-links:
   email: matt@evenson.io
   github: mattevenson
   linkedin: matt-evenson
+  twitter: evenson_io
 
 plugins:
   - jekyll-seo-tag
